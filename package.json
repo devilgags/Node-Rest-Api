@@ -1,0 +1,13 @@
+{
+  "name": "put_app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node index"
+  },
+  "dependencies": {
+    "body-parser": "1.17.0",
+    "express": "4.15.0",
+    "morgan": "1.8.1"
+  }
+}
