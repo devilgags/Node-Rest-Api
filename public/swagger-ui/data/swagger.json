@@ -1,0 +1,894 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "tech-beacon-services",
+        "description": "This API provides services for the tech beacon .",
+        "version": "1.0.0",
+        "termsOfService": "https://coe.mindtree.com/coe_advwebtech/",
+        "license": {
+            "name": "click here to get the access  token",
+            "url": "https://login.microsoftonline.com/85c997b9-f494-46b3-a11d-772983cf6f11/oauth2/authorize?response_type=token&client_id=b714e2a4-ed6d-41c7-9825-8ea1005ea4a8&redirect_uri=http://collaboration-platform&state=6b357601-600f-437c-a511-8d7660edfd6c&nux=1&resource=http://collaboration-platform-services&client-request-id=7263321b-8d49-415c-920d-7a525fa37555&x-client-SKU=Js&x-client-Ver=1.0.8&nonce=5fe6955c-87ad-46ce-9725-8ca196e09323"
+        }
+    },
+    "host": "localhost:9001",
+    "schemes": [
+        "http"
+    ],
+    "basePath": "/",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/tech-beacon-services/apis/focusareas/{focusAreaId}/technologies": {
+            "get": {
+                "summary": "get technologies by intent for a focus area",
+                "description": "get technologies by intent\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "intent",
+                        "in": "query",
+                        "description": "Intent of the technology",
+                        "type": "string"
+                    },
+                    {
+                        "name": "focusAreaId",
+                        "in": "path",
+                        "description": "focus area id",
+                        "type": "string",
+                        "required": "true"
+                    }
+                ],
+                "tags": [
+                    "focus area"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "add focus area operation response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "put": {
+                "summary": "add user",
+                "description": "add user\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "content",
+                        "in": "body",
+                        "description": "content",
+                        "schema": {
+                            "$ref": "#/definitions/focusArea"
+                        }
+                    }
+                ],
+                "tags": [
+                    "focus area"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "add focus area operation response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tech-beacon-services/apis/focusareas": {
+            "get": {
+                "summary": "get all focus areas",
+                "description": "get all focus areas",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "mode",
+                        "in": "query",
+                        "description": "explanation mode : brief or detailed",
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "focus area"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "get all focus areas response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tech-beacon-services/apis/secure/focusareas/{focusAreaId}/technologies": {
+            "post": {
+                "summary": "add technology to focus area",
+                "description": "add technology to focus area",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "focusAreaId",
+                        "in": "path",
+                        "description": "focus area id",
+                        "type": "string",
+                        "required": "true"
+                    },
+                    {
+                        "name": "content",
+                        "in": "body",
+                        "description": "content",
+                        "schema": {
+                            "$ref": "#/definitions/technology"
+                        }
+                    }
+                ],
+                "tags": [
+                    "technology"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "add technology response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tech-beacon-services/apis/focusareas/{focusAreaId}": {
+            "get": {
+                "summary": "get focus area by id",
+                "description": "get focus area by id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "focusAreaId",
+                        "in": "path",
+                        "description": "focus area id",
+                        "type": "string",
+                        "required": "true"
+                    }
+                ],
+                "tags": [
+                    "focus area"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "get focus area by id response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+         "/tech-beacon-services/apis/secure/focusareas/{focusAreaId}": {
+            "put": {
+                "summary": "edit focus area by id",
+                "description": "edit focus area by id",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "focusAreaId",
+                        "in": "path",
+                        "description": "focus area id",
+                        "type": "string",
+                        "required": "true"
+                    },
+                    {
+                        "name": "content",
+                        "in": "body",
+                        "description": "content",
+                        "schema": {
+                            "$ref": "#/definitions/focusArea"
+                        }
+                    }
+                ],
+                "tags": [
+                    "focus area"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "edit focus area by id response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "delete focus area by id",
+                "description": "delete focus area by id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "focusAreaId",
+                        "in": "path",
+                        "description": "focus area id",
+                        "type": "string",
+                        "required": "true"
+                    }
+                ],
+                "tags": [
+                    "focus area"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete focus area by id response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tech-beacon-services/apis/secure/focusareas/{focusAreaId}/technologies/{technologyId}": {
+            "put": {
+                "summary": "edit technology in focus area",
+                "description": "edit technology in focus area",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "focusAreaId",
+                        "in": "path",
+                        "description": "focus area id",
+                        "type": "string",
+                        "required": "true"
+                    },
+                    {
+                        "name": "technologyId",
+                        "in": "path",
+                        "description": "technology id",
+                        "type": "string",
+                        "required": "true"
+                    },
+                    {
+                        "name": "content",
+                        "in": "body",
+                        "description": "content",
+                        "schema": {
+                            "$ref": "#/definitions/technology"
+                        }
+                    }
+                ],
+                "tags": [
+                    "technology"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "edit technology response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "delete technology in focus area",
+                "description": "delete technology in focus area",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "focusAreaId",
+                        "in": "path",
+                        "description": "focus area id",
+                        "type": "string",
+                        "required": "true"
+                    },
+                    {
+                        "name": "technologyId",
+                        "in": "path",
+                        "description": "technology id",
+                        "type": "string",
+                        "required": "true"
+                    }
+                ],
+                "tags": [
+                    "technology"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete technology response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tech-beacon-services/apis/secure/focusareas/technologies/categories": {
+            "post": {
+                "summary": "add category for technology",
+                "description": "add category for technology",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "content",
+                        "in": "body",
+                        "description": "content",
+                        "schema": {
+                            "$ref": "#/definitions/category"
+                        }
+                    }
+                ],
+                "tags": [
+                    "category"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "add category response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tech-beacon-services/apis/focusareas/technologies/categories": {
+            "get": {
+                "summary": "get all category ",
+                "description": "get category ",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "category"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "add category response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tech-beacon-services/apis/users/auth": {
+            "post": {
+                "summary": "valiadate a user",
+                "description": "add category for technology",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "userinfo",
+                        "in": "body",
+                        "description": "user credentials",
+                        "schema": {
+                            "$ref": "#/definitions/userinfo"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "validate user response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tech-beacon-services/apis/users": {
+            "get": {
+                "summary": "get user details",
+                "description": "get user details",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "user"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tech-beacon-services/apis/secure/users/admins": {
+            "get": {
+                "summary": "get all admins details",
+                "description": "get all admins",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "user"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Add an admin",
+                "description": "Add an admin",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "admin",
+                        "in": "body",
+                        "description": "admin employee_id",
+                        "schema": {
+                            "$ref": "#/definitions/admin"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Remove an admin",
+                "description": "Remove an admin",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "admin",
+                        "in": "body",
+                        "description": "admin employee_id",
+                        "schema": {
+                            "$ref": "#/definitions/admin"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/tech-beacon-services/apis/secure/focusareas/technologies/categories/{categoryId}": {
+            "put": {
+                "summary": "edit category for technology",
+                "description": "edit category for technology",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "description": "category id",
+                        "type": "string",
+                        "required": "true"
+                    },
+                    {
+                        "name": "content",
+                        "in": "body",
+                        "description": "content",
+                        "schema": {
+                            "$ref": "#/definitions/category"
+                        }
+                    }
+                ],
+                "tags": [
+                    "category"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "edit category response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "delete category for technology",
+                "description": "delete category for technology",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "jwt token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "description": "category id",
+                        "type": "string",
+                        "required": "true"
+                    }
+                ],
+                "tags": [
+                    "category"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete category response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        },
+        "response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "status": {
+                    "type": "object"
+                }
+            }
+        },
+        "focusArea": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "short_name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "data": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "technology": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "category_name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "intent": {
+                    "type": "string"
+                }
+            }
+        },
+        "category": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                 "image": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "data": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "admin": {
+            "type": "object",
+            "properties": {
+                "employee_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "userinfo": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
